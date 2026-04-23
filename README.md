@@ -62,7 +62,39 @@ sudo docker run -it --rm -d \
     3. Gib deinen erhaltenen Key unter **"Enter activation key"** ein.
 
 # Ersten Workflow erstellen
+Klicke auf der Startseite auf **Start from scratch**, um einen neuen Workflow zu eröffnen. Folge dann diesen Schritten:
+1. Füge den Trigger **On chat message** hinzu
+2. Füge an diesen den Ollama Node **Message a model** (Ist in der Kategorie **Ollama**) an
+3. In dem Ollama-Node müssen als erstes die Credentials gesetzt werden (**Set up credentials**)
+     - **Base URL:** http://10.255.41.159:11434 
+4. Nun kann unter Model das Large-Language-Model **gemma4** ausgewählt werden
+5. Wenn du eine Nachricht in den Chat gesendet hast (der Chat öffnet sich, wenn du über das **When chat message received** hoverst und auf **Open Chat** clickst) siehst du im Ollama-Menü links den **Input** Hier gibt es einen Bereich **chatInput**, welchen du in das Content-Feld ziehen musst, damit an das LLM die eingegebene Nachricht übergeben wird
+6. Nun kannst du im Chat mit dem LLM **gemma4** chatten 
+
+# Zweiter Workflow
+In diesem Abschnitt wirst du einen Workflow erstellen, welcher dir eine Nachricht auf deine IServ-Email sendet, wenn du an diesem Tag Informatik-Unterricht hast
+
 - **Hinzufügen des WebUntis-Nodes:**
     1. Klicke unten links auf das **Zahnrad-Symbol** (Einstellungen).
     2. Navigiere zum Bereich **"Community nodes"**.
     3. Unter **Install a community node** als Namen **n8n-nodes-webuntis** eingeben, den Haken bei den Risiken setzen und auf **Install** drücken
+1. Füge den Trigger **Trigger manually** hinzu
+2. Füge an diesen den Node **Get Current Date** aus **Date & Time** (Nach node Date & Time suchen)
+3. An diesen Node kann nun ein **Get timetable for timeframe** von **WebUntis** angehangen werden
+4. Um nun aus den ganzen Daten nurnoch die einzelnen Stunden herauszunehmen, kann der Node **Split Out** genutzt werden
+5. Die einzelnen Unterrichtsstunden lassen sich nun mit dem Node **Filter** filtern sodass bspw. nur Unterrichtsstunden ausgegeben werden, welche Informatik sind. Hierzu stellt man den Filter bspw. so ein, dass **subject** gleich **IF10** (Fachkürzel muss der Liste entnommen werden) ist.
+       - Möchte man nach demm Datum filtern, muss man zudem noch nach dem **Get Current Date** Node noch einen **Format Current Time** Node anhängen, welcher das Datum, welches man mit dem **Get Current Date** Node erhält in folgendes Format umformt: **dd.MM.yyyy** und im **Filter** Node **Convert types where required aktiviert sein
+       - **Wichtig zu beachten:** Wenn man dies macht, müssen zudem in dem **Get timetable for timeframe** Node das Datum so eingestellt werden, dass es immernoch das originale Datum nutzt
+6. Nun kann man, an den Filter widerum den Ollama Node **Message a model** nutzen um sich eine Nachricht formulieren zu lassen
+       - Hierzu werden die bereits erstellten Credentials genutzt und es muss nur ein Prompt sowie das Model auf gemma4 gestellt werden  
+8. Die von Ollama generierte Nachricht kann dann mit dem **Send an Email** (In der Kategorie **Send Email**) an seine IServ-Email schicken lassen
+       - Als Credentials:
+             - User: IServ-Nutzername
+             - Password: IServ-Passwort
+             - Host: ah-ahg.de
+             - Der Rest kann so bleiben, wie er ist
+       - From Email: [irgendetwas]@ah-ahg.de
+       - To Email: Deine IServ Email
+       - Subject: Betreff der Email
+       - Email Format: Text
+       - Im Text feld kann dann die von der KI generierte Nachricht hineingezogen werden
