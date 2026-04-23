@@ -81,19 +81,26 @@ In diesem Abschnitt wirst du einen Workflow erstellen, welcher dir eine Nachrich
 2. Füge den Trigger **Trigger manually** hinzu
 3. Füge an diesen den Node **Get Current Date** aus **Date & Time** (Nach Node Date & Time suchen)
 4. An diesen Node kann nun ein **Get timetable for timeframe** von **WebUntis** angehangen werden
-5. Um nun aus den ganzen Daten nurnoch die einzelnen Stunden herauszunehmen, kann der Node **Split Out** genutzt werden
-6. Die einzelnen Unterrichtsstunden lassen sich nun mit dem Node **Filter** filtern sodass bspw. nur Unterrichtsstunden ausgegeben werden, welche Informatik sind. Hierzu stellt man den Filter bspw. so ein, dass **subject** gleich **IF10** (Fachkürzel muss der Liste entnommen werden) ist.
+       - Credentials:
+          - Username: WebUntis-Nutzername
+          - Password: WebUntis-Passwort
+       - Date: \[Die Ausgabe des **Get Current Time** Nodes]
+       - School Name: ahg-ahaus
+       - Base URL: https://ahg-ahaus.webuntis.com
+6. Um nun aus den ganzen Daten nurnoch die einzelnen Stunden herauszunehmen, kann der Node **Split Out** genutzt werden
+       - Um nur die Unterrichtsstunden einzeln weiterzugeben kann hier in **Fields To Split Out** der Bereich **lessons** hineingezogen werden (nicht **lessons\[...]**)
+8. Die einzelnen Unterrichtsstunden lassen sich nun mit dem Node **Filter** filtern sodass bspw. nur Unterrichtsstunden ausgegeben werden, welche Informatik sind. Hierzu stellt man den Filter bspw. so ein, dass **subject** gleich **IF10** (Fachkürzel muss der Liste entnommen werden) ist.
        - Möchte man nach demm Datum filtern, muss man zudem noch nach dem **Get Current Date** Node noch einen **Format Current Time** Node anhängen, welcher das Datum, welches man mit dem **Get Current Date** Node erhält in folgendes Format umformt: **dd.MM.yyyy** und im **Filter** Node **Convert types where required aktiviert sein
        - **Wichtig zu beachten:** Wenn man dies macht, müssen zudem in dem **Get timetable for timeframe** Node das Datum so eingestellt werden, dass es immernoch das originale Datum nutzt
-7. Nun kann man, an den Filter widerum den Ollama Node **Message a model** nutzen um sich eine Nachricht formulieren zu lassen
-       - Hierzu werden die bereits erstellten Credentials genutzt und es muss nur ein Prompt sowie das Model auf gemma4 gestellt werden  
-8. Die von Ollama generierte Nachricht kann dann mit dem **Send an Email** (In der Kategorie **Send Email**) an seine IServ-Email schicken lassen
+9. Nun kann man, an den Filter widerum den Ollama Node **Message a model** nutzen um sich eine Nachricht formulieren zu lassen
+       - Hierzu werden die bereits erstellten Credentials genutzt und es muss nur ein Prompt formuliert sowie das Model auf gemma4 gestellt werden  
+10. Die von Ollama generierte Nachricht kann dann mit dem **Send an Email** (In der Kategorie **Send Email**) an seine IServ-Email schicken lassen
        - Als Credentials:
-             - User: IServ-Nutzername
-             - Password: IServ-Passwort
-             - Host: ah-ahg.de
-             - Der Rest kann so bleiben, wie er ist
-       - From Email: [irgendetwas]@ah-ahg.de
+          - User: IServ-Nutzername
+          - Password: IServ-Passwort
+          - Host: ah-ahg.de
+          - Der Rest kann so bleiben, wie er ist
+       - From Email: \[irgendetwas]@ah-ahg.de
        - To Email: Deine IServ Email
        - Subject: Betreff der Email
        - Email Format: Text
