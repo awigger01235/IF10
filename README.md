@@ -60,3 +60,9 @@ sudo docker run -it --rm -d \
     1. Klicke unten links auf das **Zahnrad-Symbol** (Einstellungen).
     2. Navigiere zum Bereich **"Usage and Plan"**.
     3. Gib deinen erhaltenen Key unter **"Enter activation key"** ein.
+
+# Ersten Workflow erstellen
+- **Hinzufügen des WebUntis-Nodes:**
+    1. Klicke unten links auf das **Zahnrad-Symbol** (Einstellungen).
+    2. Navigiere zum Bereich **"Community nodes"**.
+    3. Unter **Install a community node** als Namen **n8n-nodes-webuntis** eingeben, den Haken bei den Risiken setzen und auf **Install** drücken
