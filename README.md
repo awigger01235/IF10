@@ -68,7 +68,7 @@ Klicke auf der Startseite auf **Start from scratch**, um einen neuen Workflow zu
 3. In dem Ollama-Node müssen als erstes die Credentials gesetzt werden (**Set up credentials**)
      - **Base URL:** http://10.255.41.159:11434 
 4. Nun kann unter Model das Large-Language-Model **gemma4** ausgewählt werden
-5. Wenn du eine Nachricht in den Chat gesendet hast (der Chat öffnet sich, wenn du über das **When chat message received** hoverst und auf **Open Chat** clickst) siehst du im Ollama-Menü links den **Input** Hier gibt es einen Bereich **chatInput**, welchen du in das Content-Feld ziehen musst, damit an das LLM die eingegebene Nachricht übergeben wird
+5. Wenn du eine Nachricht in den Chat gesendet hast (der Chat öffnet sich, wenn du über das **When chat message received** hoverst und auf **Open Chat** klickst) siehst du im Ollama-Menü links den **Input** Hier gibt es einen Bereich **chatInput**, welchen du in das Content-Feld ziehen musst, damit an das LLM die eingegebene Nachricht übergeben wird
 6. Nun kannst du im Chat mit dem LLM **gemma4** chatten 
 
 # Zweiter Workflow
