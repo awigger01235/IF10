@@ -44,9 +44,9 @@ sudo docker volume create n8n_data
 
 # Hiermit wird ein Docker Container gestartet, in welchem n8n läuft
 sudo docker run -it --rm -d \
- --name n8n \ #Name des Containers
- -p 5678:5678 \ #Ports, auf denen die Website von n8n aufrufbar ist
- -v n8n_data:/home/node/.n8n \ #Der Speicher, in dem n8n speichert
- docker.n8n.io/n8nio/n8n \ #Docker-Image
+ --name n8n \
+ -p 5678:5678 \
+ -v n8n_data:/home/node/.n8n \
+ docker.n8n.io/n8nio/n8n \
  start --tunnel
 ```
