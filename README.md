@@ -1,4 +1,5 @@
 # Installation der benötigten Software
+Die Befehle zur Installation können einfach kopiert und in PowerShell eingefügt werden.
 ## Windows-Subsystem für Linux (WSL) mit Ubuntu
 ```
 wsl --install ubuntu
